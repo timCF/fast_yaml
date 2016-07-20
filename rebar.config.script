@@ -20,12 +20,14 @@
 %%%
 %%%----------------------------------------------------------------------
 
+DDir = element(2,file:get_cwd())++"/deps/libyaml",
+
 Cfg = case file:consult("vars.config") of
           {ok, Terms} ->
               Terms;
           _Err ->
               []
-      end ++ [{cflags, "-g -O2 -Wall"}, {ldflags, "-lyaml"}, {with_gcov, "false"}],
+      end ++ [{cflags, "-g -O2 -Wall -I"++DDir++"/include/"}, {ldflags, "-L"++DDir++"/priv/ -lyaml"}, {with_gcov, "false"}],
 {cflags, CfgCFlags} = lists:keyfind(cflags, 1, Cfg),
 {ldflags, CfgLDFlags} = lists:keyfind(ldflags, 1, Cfg),
 {with_gcov, CfgWithGCov} = lists:keyfind(with_gcov, 1, Cfg),
