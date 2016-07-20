@@ -18,7 +18,10 @@ headers for LibYaml library to build it.
 
 You can trigger build with:
 
-    ./configure && make
+```
+*** install -y make autoconf automake libtool gcc g++
+./configure && make
+```
 
 ### OSX build example
 
