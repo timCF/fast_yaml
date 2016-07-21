@@ -46,7 +46,7 @@ stop() ->
     application:stop(fast_yaml).
 
 load_nif() ->
-    SOPath = p1_nif_utils:get_so_path(?MODULE, [fast_yaml], "fast_yaml"),
+    SOPath = code:priv_dir(fast_yaml)++"/lib/fast_yaml",
     case catch erlang:load_nif(SOPath, 0) of
         ok ->
             ok;
