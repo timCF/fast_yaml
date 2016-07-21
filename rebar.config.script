@@ -20,8 +20,11 @@
 %%%
 %%%----------------------------------------------------------------------
 
-DDir = element(2,file:get_cwd())++"/deps/libyaml",
-
+DDir0 = element(2,file:get_cwd()),
+DDir = case filelib:is_dir(DDir0++"/deps/libyaml") of
+	true -> DDir0++"/deps/libyaml";
+	false -> DDir0++"/../libyaml"
+end,
 Cfg = case file:consult("vars.config") of
           {ok, Terms} ->
               Terms;
